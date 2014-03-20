@@ -8,23 +8,26 @@ local function get_file_name(str)
     end
 end
 
-local usage = string.format("lua %s csvpath luadir", arg[0])
+local usage = string.format("lua %s root csvpath luadir", arg[0])
 
-if #arg~=2 then
+if #arg~=3 then
     print(usage)
     return
 end
 
-local csvpath = arg[1]
-local luadir = arg[2]
+local root = arg[1]
+local csvpath = arg[2]
+local luadir = arg[3]
 local filename = get_file_name(csvpath)
 
 local plua = require("plua")
 local csv  = require('csv')
 local tab = csv.load(csvpath, ',')
-local str = plua(tab)
-local outpath = luadir .. "/" .. filename .. ".lua"
 
+local str = plua(tab)
+str = root .. "[\"" .. filename .. "\"] = " .. str
+
+local outpath = luadir .. "/" .. filename .. ".lua"
 local f = io.open(outpath, "w")
 f:write(str)
 
