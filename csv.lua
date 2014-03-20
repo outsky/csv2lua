@@ -89,7 +89,6 @@ function load(path, sep)
             end
             local kidx = attrs["key"] or attrs["key1"]
             local key_id = tvalue[kidx]
-            print(key_id, tonumber(key_id))
             if not tonumber(key_id) then
                 key_id = last_key
             else
