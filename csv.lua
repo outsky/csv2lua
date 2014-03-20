@@ -1,8 +1,8 @@
--- Using lua to parse CSV file to a table. 
--- Notice: first line must be data description filed. 
--- The separator is '|', change it if you want. 
--- Usage: csv = require('csv') 
---        tab = csv.load('test.csv', ',') 
+-- Using lua to parse CSV file to a table.
+-- Notice: first line must be data description filed.
+-- The separator is '|', change it if you want.
+-- Usage: csv = require('csv')
+--        tab = csv.load('test.csv', ',')
 --        table.foreach(tab[1], print)
 --        print(tab[1].you_field)
 
@@ -57,7 +57,7 @@ local function parse_title(title, sep)
     return class_mt
 end
 
-local function parse_line(mt, line, sep) 
+local function parse_line(mt, line, sep)
     local data = line:split("[^" .. sep .. "]+")
     setmetatable(data, mt)
     return data

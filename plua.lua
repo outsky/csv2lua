@@ -2,7 +2,11 @@
 
 local tostring = tostring
 local function key_str(k)
-    return "[\"" .. tostring(k) .. "\"]"
+    if type(k)=="number" or tostring(tonumber(k))==k then
+        return "[" .. tostring(k) .. "]"
+    else
+        return "[\"" .. tostring(k) .. "\"]"
+    end
 end
 
 function plua(v)
