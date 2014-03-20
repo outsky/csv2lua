@@ -1,12 +1,4 @@
 -- Using lua to parse CSV file to a table.
--- Notice: first line must be data description filed.
--- The separator is '|', change it if you want.
--- Usage: csv = require('csv')
---        tab = csv.load('test.csv', ',')
---        table.foreach(tab[1], print)
---        print(tab[1].you_field)
-
---encoding=utf-8
 
 local error = error
 local setmetatable = setmetatable
@@ -19,18 +11,6 @@ local print = print
 
 module(...)
 
---[[
-string.split = function (str, pattern)
-    pattern = pattern or "[^%s]+"
-    if pattern:len() == 0 then pattern = "[^%s]+" end
-    local parts = {__index = insert}
-    setmetatable(parts, parts)
-    str:gsub(pattern, parts)
-    setmetatable(parts, nil)
-    parts.__index = nil
-    return parts
-end
-]]
 string.split = function(str, pattern)
     local tb = {}
     local s = 1
