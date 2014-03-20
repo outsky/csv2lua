@@ -8,6 +8,7 @@ local concat = table.concat
 local ipairs = ipairs
 local string = string
 local print = print
+local tonumber = tonumber
 
 module(...)
 
@@ -48,6 +49,7 @@ function load(path, sep)
     local i = 1
     local keys = {}
     local attrs = {}
+    local last_key = nil
     for line in lines(path) do
         if i==2 then
             if not tag then
@@ -71,7 +73,10 @@ function load(path, sep)
                     attrs[v] = k
                 end
             end
-            if not attrs.key and not attrs.key1 then return nil end
+            if not attrs.key and not attrs.key1 then
+                print("no key")
+                return nil
+            end
 
         elseif i>4 then
             local tvalue = parse_line(mt, line, sep)
@@ -84,6 +89,12 @@ function load(path, sep)
             end
             local kidx = attrs["key"] or attrs["key1"]
             local key_id = tvalue[kidx]
+            print(key_id, tonumber(key_id))
+            if not tonumber(key_id) then
+                key_id = last_key
+            else
+                last_key = key_id
+            end
             data[key_id] = data[key_id] or {}
             insert(data[key_id], kvalue)
         end
