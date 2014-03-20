@@ -10,7 +10,8 @@ GEN_BIN=0
 USAGE="USAGE:\n$0 [-r root] [-c csv-dir] [-l lua-dir] [-o lua/bin/all]\n
     -r: set the root table\n
     -c: set the csv folder\n
-    -l: set the output folder\n"
+    -l: set the output folder\n
+    -o: set what to generate\n"
 
 fill_target()
 {
