@@ -23,6 +23,10 @@ local filename = get_file_name(csvpath)
 local plua = require("plua")
 local csv  = require('csv')
 local tab = csv.load(csvpath, ',')
+if not tab then
+    print("[x] " .. csvpath)
+    return nil
+end
 
 local str = plua(tab)
 local header = string.format("-- csv2lua: %s\n%s = %s or {}\n\n%s[\"%s\"] = ", os.date(), root, root, root, filename)
@@ -33,3 +37,4 @@ f:write(header .. str)
 f:close()
 
 print("[-] " .. csvpath .. " -> " .. outpath)
+

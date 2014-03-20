@@ -1,7 +1,7 @@
 副本ID,地图ID,副本难度,前置副本ID,副本名称,副本标签,需要体力,进入等级,是否是Boss,Boss缩略图,战斗地图,背景音乐,前置对话ID,战斗关卡1,战斗关卡2,战斗关卡3,战斗关卡4,战斗关卡5,客户端副本剧情描述,客户端展示资源掉落包ID,客户端展示道具掉落包ID,所属地图名,
 EctypeID,MapID,HardLevel,PreEctypeID,EctypeName,EctypeIndex,NeedEnergy,OpenLevel,IsBoss,BossPotrait,SceneBackground,Music,DialogueID,BattleID1,BattleID2,BattleID3,BattleID4,BattleID5,Desc,ShowDropPackID1,ShowDropPackID2,,
 uint32,uint8,uint8,uint32,string,uint8,uint8,uint16,uint8,string,string,string,uint32,uint32,uint32,uint32,uint32,uint32,string,uint32,uint32,,
-all,key,all,all,all,all,all,all,all,all,all,all,all,all,all,all,all,all,all,all,all,,
+key,all,all,all,all,all,all,all,all,all,all,all,all,all,all,all,all,all,all,all,all,,
 10101,1,1,0,仙灵岛(1),1,5,1,0,BaiJingJing,Bamboo,Battle1.mp3,1001,1011,1012,1013,,,面前这小姑娘竟是东邪黄岛主的孙女。看她那副着急的样子，谷中定有大事发生。,1003,1002,盛渔村,1
 10102,1,1,10101,仙灵岛(2),2,5,1,0,ChengCaiYi,Bamboo1,Battle1.mp3,1001,1021,1022,1023,,,面前这小姑娘竟是东邪黄岛主的孙女。看她那副着急的样子，谷中定有大事发生。,1003,1002,盛渔村,2
 10103,1,1,10102,仙灵岛(3),3,5,1,1,ChiGuiWang,Fenchang,Battle1.mp3,1001,1031,1032,1033,,,面前这小姑娘竟是东邪黄岛主的孙女。看她那副着急的样子，谷中定有大事发生。,1003,1002,盛渔村,3

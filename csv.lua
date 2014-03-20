@@ -66,10 +66,12 @@ function load(path, sep)
                 if v=="key" or v=="key1" or v=="key2" then
                     if attrs[v] then
                         print("too many keys")
+                        return nil
                     end
                     attrs[v] = k
                 end
             end
+            if not attrs.key and not attrs.key1 then return nil end
 
         elseif i>4 then
             local tvalue = parse_line(mt, line, sep)
