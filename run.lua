@@ -25,10 +25,10 @@ local csv  = require('csv')
 local tab = csv.load(csvpath, ',')
 
 local str = plua(tab)
-str = root .. "[\"" .. filename .. "\"] = " .. str
+local header = string.format("-- csv2lua: %s\n%s = %s or {}\n\n%s[\"%s\"] = ", os.date(), root, root, root, filename)
 
 local outpath = luadir .. "/" .. filename .. ".lua"
 local f = io.open(outpath, "w")
-f:write(str)
+f:write(header .. str)
 
 print("[OK] " .. csvpath .. " -> " .. outpath)
