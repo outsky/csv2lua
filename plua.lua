@@ -14,6 +14,7 @@ local function plua(v)
         return type(t)=="string" and ('"' .. string.gsub(t,"\n","\\n") .. '"') or tostring(t)
     end
 
+    local root = "__root_tmp__"
     local reg = {}
     local ret = {}
     local function _plua(k,t,tab)
@@ -29,14 +30,19 @@ local function plua(v)
                     ret[#ret+1] = tab .. key_str(k) .. " = "
                     _plua(k,v,tab)
                 end
-                ret[#ret+1] = old .. "}, --" .. key_str(k) .. "\n"
+
+                if k==root then
+                    ret[#ret+1] = old .. "}\n"
+                else
+                    ret[#ret+1] = old .. "}, --" .. key_str(k) .. "\n"
+                end
             end
         else
             ret[#ret+1] = str(t) .. ",\n"
         end
     end
 
-    _plua("root", v, "")
+    _plua(root, v, "")
     return table.concat(ret)
 end
 
