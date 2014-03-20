@@ -30,5 +30,6 @@ local header = string.format("-- csv2lua: %s\n%s = %s or {}\n\n%s[\"%s\"] = ", o
 local outpath = luadir .. "/" .. filename .. ".lua"
 local f = io.open(outpath, "w")
 f:write(header .. str)
+f:close()
 
-print("[OK] " .. csvpath .. " -> " .. outpath)
+print("[-] " .. csvpath .. " -> " .. outpath)
