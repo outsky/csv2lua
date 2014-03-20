@@ -9,7 +9,7 @@ local function key_str(k)
     end
 end
 
-function plua(v)
+local function plua(v)
     local function str(t)
         return type(t)=="string" and ('"' .. string.gsub(t,"\n","\\n") .. '"') or tostring(t)
     end
@@ -40,3 +40,4 @@ function plua(v)
     return table.concat(ret)
 end
 
+return plua
