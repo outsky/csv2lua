@@ -29,7 +29,7 @@ if not tab then
 end
 
 local str = plua(tab)
-local header = string.format("-- csv2lua: %s\n%s = %s or {}\n\n%s[\"%s\"] = ", os.date(), root, root, root, filename)
+local header = string.format("-- csv2lua: %s\n%s = %s or {}\n\n%s[\"%s\"] = ", os.date("%Y-%m-%d %H:%M:%S"), root, root, root, filename)
 
 local outpath = luadir .. "/" .. filename .. ".lua"
 local f = io.open(outpath, "w")
