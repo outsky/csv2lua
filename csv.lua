@@ -106,22 +106,39 @@ function load(path, sep)
 
         elseif i>4 then
             local tvalue = parse_line(mt, line, sep)
-            local kvalue = {}
+            local row = {}
             for k,v in ipairs(tvalue) do
                 local key = keys[k]
-                if key and #key>2 then
-                    kvalue[key] = tvalue[k]
+                if key and #key>=2 then
+                    row[key] = v
                 end
             end
-            local kidx = attrs["key"] or attrs["key1"]
-            local key_id = tvalue[kidx]
-            if not tonumber(key_id) then
-                key_id = last_key
+
+            if attrs.key then
+                -- single key
+                local kidx = attrs.key
+                local kv = tvalue[kidx]
+                if not tonumber(kv) then
+                    kv = last_key
+                else
+                    last_key = kv
+                end
+                data[kv] = data[kv] or {}
+                insert(data[kv], row)
             else
-                last_key = key_id
+                -- double keys
+                local kidx1 = attrs.key1
+                local kidx2 = attrs.key2
+                local kv1 = tvalue[kidx1]
+                local kv2 = tvalue[kidx2]
+                if not tonumber(kv1) or not tonumber(kv2) then
+                    info = "key1 or key2 empty"
+                    return nil
+                end
+                data[kv1] = data[kv1] or {}
+                data[kv1][kv2] = data[kv1][kv2] or {}
+                insert(data[kv1][kv2], row)
             end
-            data[key_id] = data[key_id] or {}
-            insert(data[key_id], kvalue)
         end
 
         i = i+1
