@@ -99,7 +99,7 @@ function load(path, sep)
             end
 
             if attrs.key then
-                info = "key: "..attrs.key
+                info = "key: " .. keys[attrs.key]
             elseif attrs.key1 then
                 info = "key1: " .. keys[attrs.key1] ..", key2: " .. keys[attrs.key2]
             end
