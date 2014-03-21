@@ -55,8 +55,10 @@ gen_root_table()
     lua_list=`ls $LUA_DIR/*.lua`
     for file in $lua_list
     do
-        fn=`basename $file .lua`
-        echo -e "require(\"$fn\")" >> $root_lua
+        if [ $file != $root_lua ]; then
+            fn=`basename $file .lua`
+            echo -e "require(\"$fn\")" >> $root_lua
+        fi
     done
     echo -e "\n\n"
 }
