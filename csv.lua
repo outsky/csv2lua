@@ -119,7 +119,9 @@ function load(path, sep)
                 local kidx = attrs.key
                 local kv = tvalue[kidx]
                 if not tonumber(kv) then
+                    -- random configure type
                     kv = last_key
+                    row[keys[kidx]] = kv
                 else
                     last_key = kv
                 end
