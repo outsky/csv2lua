@@ -9,6 +9,21 @@ local function key_str(k)
     end
 end
 
+local tsort = table.sort
+
+local function pairs_by_key(t)
+    local tmp = {}
+    for n in pairs(t) do
+        tmp[#tmp+1] = n
+    end
+    tsort(tmp)
+    local i = 0
+    return function()
+        i = i + 1
+        return tmp[i], t[tmp[i]]
+    end
+end
+
 local function plua(v)
     local function str(t)
         return type(t)=="string" and ('"' .. string.gsub(t,"\n","\\n") .. '"') or tostring(t)
@@ -26,7 +41,7 @@ local function plua(v)
                 ret[#ret+1] = "{\n"
                 local old = tab
                 tab = tab .. "    "
-                for k,v in pairs(t) do
+                for k,v in pairs_by_key(t) do
                     ret[#ret+1] = tab .. key_str(k) .. " = "
                     _plua(k,v,tab)
                 end
