@@ -46,6 +46,21 @@ echo -e "GEN_BIN: $GEN_BIN"
 echo "----------------------------------"
 echo -e "\n"
 
+gen_root_table()
+{
+    root_lua=$LUA_DIR/$ROOT.lua
+    rm -f $root_lua
+    echo -e "-- csv2lua: `date`\n" >> $root_lua
+
+    lua_list=`ls $LUA_DIR/*.lua`
+    for file in $lua_list
+    do
+        fn=`basename $file .lua`
+        echo -e "require(\"$fn\")" >> $root_lua
+    done
+    echo -e "\n\n"
+}
+
 # csv -> lua
 gen_lua()
 {
@@ -61,6 +76,9 @@ gen_lua()
     done
     TIME_E=`date +%s`
     echo -e "[DONE] csv -> lua (`expr $TIME_E - $TIME_B` seconds)"
+
+    # generate root table file
+    gen_root_table
 }
 
 # lua -> luac
