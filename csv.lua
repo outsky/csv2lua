@@ -44,6 +44,14 @@ local function parse_line(mt, line, sep)
     return data
 end
 
+local function make_line_end(line)
+    if line:sub(-1)~=',' then
+        line = line .. ","
+    end
+
+    return line
+end
+
 function load(path, sep)
     local tag, sep, mt, data = false, sep or '|', nil, {}
     local i = 1
@@ -51,6 +59,7 @@ function load(path, sep)
     local attrs = {}
     local last_key = nil
     for line in lines(path) do
+        line = make_line_end(line)
         if i==2 then
             if not tag then
                 tag = true

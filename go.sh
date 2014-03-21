@@ -1,6 +1,6 @@
 #!/bin/sh
 
-ROOT=configmgr
+ROOT=ConfigMgr
 CSV_DIR=csv
 LUA_DIR=lua
 
