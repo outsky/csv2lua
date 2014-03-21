@@ -62,6 +62,7 @@ function load(path, sep)
     local keys = {}
     local attrs = {}
     local last_key = nil
+    local info = ""
     for line in lines(path) do
         line = make_line_end( trim_right(line) )
         if i==2 then
@@ -80,15 +81,27 @@ function load(path, sep)
             for k,v in ipairs(t_attrs) do
                 if v=="key" or v=="key1" or v=="key2" then
                     if attrs[v] then
-                        print("too many keys")
-                        return nil
+                        info = "too many " .. v
+                        return nil, info
                     end
                     attrs[v] = k
                 end
             end
             if not attrs.key and not attrs.key1 then
-                print("no key")
-                return nil
+                info = "no key"
+                return nil, info
+            elseif attrs.key and (attrs.key1 or attrs.key2) then
+                info = "key and (key1 or key2) exist at the same time"
+                return nil, info
+            elseif attrs.key1 and not attrs.key2 then
+                info = "key1 exist but key2 missed"
+                return nil, info
+            end
+
+            if attrs.key then
+                info = "key: "..attrs.key
+            elseif attrs.key1 then
+                info = "key1: " .. keys[attrs.key1] ..", key2: " .. keys[attrs.key2]
             end
 
         elseif i>4 then
@@ -113,7 +126,7 @@ function load(path, sep)
 
         i = i+1
     end
-    return data
+    return data, info
 end
 
 local class_mt = {

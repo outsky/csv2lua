@@ -22,14 +22,14 @@ local filename = get_file_name(csvpath)
 
 local plua = require("plua")
 local csv  = require('csv')
-local tab = csv.load(csvpath, ',')
+local tab, info = csv.load(csvpath, ',')
 if not tab then
-    print("[x] " .. csvpath)
+    print(string.format("[x] %s : %s", csvpath, info))
     return nil
 end
 
 local str = plua(tab)
-local header = string.format("-- csv2lua: %s\n%s = %s or {}\n\n%s[\"%s\"] = ", os.date("%Y-%m-%d %H:%M:%S"), root, root, root, filename)
+local header = string.format("-- csv2lua: %s\n-- [ %s ]\n%s = %s or {}\n\n%s[\"%s\"] = ", os.date("%Y-%m-%d %H:%M:%S"), info, root, root, root, filename)
 
 local outpath = luadir .. "/" .. filename .. ".lua"
 local f = io.open(outpath, "w")
