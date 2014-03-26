@@ -1,0 +1,12 @@
+活动ID,活动难度,活动名称,活动的图片,开放等级,需要体力,开始时间,结束时间,活动次数上限,
+ActivityID,Level,ActivityName,ActivityPic,OpenLevel,NeedEnergy,StarTime,EndTime,AttendMaxNum,
+uint32,uint8,string,string,uint16,uint8,string,string,uint8,
+key1,key2,all,all,all,all,all,all,all,
+101,1,普通财神副本,SystemFunc1,20,10,,,3,1天3次，凌晨重置
+101,2,高手财神副本,SystemFunc1_H,20,20,,,3,1天3次，凌晨重置
+102,1,普通神仙试炼,SystemFunc2,20,10,,,5,不限次数，但需要记录次数用于每日助手
+102,2,高手神仙试炼,SystemFunc2_H,20,20,,,5,不限次数，但需要记录次数用于每日助手
+103,1,摘仙桃,SystemFunc3,20,5,,,5,1天5次，凌晨重置
+104,1,中午世界Boss,SystemFunc4,20,5,12:00,17:00,10,每只Boss10次，两只Boss分别用不同的交互数据记录已打的次数
+105,1,晚上世界Boss,SystemFunc4,20,5,18:00,23:00,10,每只Boss10次，两只Boss分别用不同的交互数据记录已打的次数
+106,1,六道轮回,SystemFunc5,20,5,,,10,暂无
